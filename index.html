@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Odonto Maria — Odontologia de Excelência em João Pessoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<style>
+:root {
+  --navy: oklch(28% 0.07 255);
+  --navy-deep: oklch(18% 0.07 255);
+  --navy-mid: oklch(38% 0.06 255);
+  --gold: oklch(76% 0.08 80);
+  --gold-light: oklch(84% 0.06 80);
+  --cream: oklch(97% 0.008 80);
+  --cream-warm: oklch(94% 0.012 80);
+  --cream-border: oklch(90% 0.015 80);
+  --text-dark: oklch(18% 0.04 255);
+  --text-mid: oklch(38% 0.04 255);
+  --text-soft: oklch(55% 0.03 255);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --r-sm: 4px;
+  --r-md: 12px;
+  --r-lg: 24px;
+  --r-arc: 120px 120px 0 0;
+  --shadow-sm: 0 2px 8px oklch(18% 0.07 255 / .06), 0 1px 3px oklch(18% 0.07 255 / .04);
+  --shadow-md: 0 8px 32px oklch(18% 0.07 255 / .10), 0 2px 8px oklch(18% 0.07 255 / .06);
+  --shadow-lg: 0 20px 60px oklch(18% 0.07 255 / .14), 0 6px 20px oklch(18% 0.07 255 / .08);
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --container: min(1200px, 100%);
+  --pad: clamp(20px, 5vw, 80px);
+  --gap-section: clamp(64px, 10vw, 120px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.05vw, 17px);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, a { cursor: pointer; }
+
+/* ── GRAIN TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .5;
+}
+
+/* ── CONTAINER ── */
+.wrap { max-width: var(--container); margin-inline: auto; padding-inline: var(--pad); }
+
+/* ── TYPOGRAPHY ── */
+.t-display { font-family: var(--font-display); font-weight: 600; line-height: 1.1; letter-spacing: -.02em; }
+.t-display em { font-style: italic; color: var(--gold); }
+.t-label {
+  font-family: var(--font-body);
+  font-size: clamp(10px, .75vw, 11px);
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.t-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); vertical-align: middle; margin-right: 8px; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: clamp(12px, .85vw, 13px);
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 2px;
+  border: none;
+  transition: all 200ms var(--ease-out);
+}
+.btn-primary { background: var(--navy); color: var(--cream); }
+.btn-primary:hover { background: var(--navy-deep); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.btn-outline { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: var(--cream); }
+.btn-ghost { background: transparent; color: var(--cream); border: 1px solid oklch(100% 0 0 / .4); }
+.btn-ghost:hover { background: oklch(100% 0 0 / .1); }
+.btn-wpp { background: var(--gold); color: var(--navy-deep); }
+.btn-wpp:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+/* ── NAV ── */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 var(--pad);
+  transition: background 300ms, box-shadow 300ms;
+}
+#nav.scrolled {
+  background: oklch(18% 0.07 255 / .97);
+  box-shadow: 0 2px 24px oklch(18% 0.07 255 / .3);
+  backdrop-filter: blur(12px);
+}
+.nav-inner {
+  max-width: var(--container);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo img { height: 40px; width: auto; object-fit: contain; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .75);
+  transition: color 150ms;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { margin-left: 16px; }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--cream);
+  transition: all 200ms;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--navy-deep);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 6vw, 36px);
+  color: var(--cream);
+  font-weight: 400;
+  transition: color 150ms;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* ── HERO ── */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  background: var(--navy-deep);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    oklch(18% 0.07 255 / .88) 0%,
+    oklch(18% 0.07 255 / .65) 50%,
+    oklch(18% 0.07 255 / .20) 100%
+  );
+}
+.hero-scrim-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, oklch(18% 0.07 255 / .7), transparent);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: clamp(60px, 8vh, 100px);
+  padding-top: 100px;
+}
+.hero-inner {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 48px;
+}
+.hero-text { max-width: 560px; }
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+.hero-eyebrow span {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -.025em;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+.hero-title em { font-style: italic; color: var(--gold); display: block; }
+.hero-sub {
+  font-size: clamp(15px, 1.1vw, 17px);
+  color: oklch(100% 0 0 / .7);
+  max-width: 420px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 16px;
+}
+.hero-badge {
+  background: oklch(100% 0 0 / .08);
+  border: 1px solid oklch(100% 0 0 / .15);
+  backdrop-filter: blur(8px);
+  border-radius: var(--r-md);
+  padding: 20px 24px;
+  color: var(--cream);
+  text-align: center;
+  min-width: 120px;
+}
+.hero-badge-num {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--gold);
+  display: block;
+}
+.hero-badge-label {
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .6);
+  margin-top: 4px;
+  display: block;
+}
+.hero-monogram {
+  position: absolute;
+  right: clamp(20px, 5vw, 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(200px, 22vw, 320px);
+  font-weight: 600;
+  color: oklch(100% 0 0 / .04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* ── CREDIBILIDADE ── */
+#credibilidade {
+  background: var(--navy);
+  padding: clamp(48px, 6vw, 72px) 0;
+}
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.cred-item {
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+}
+.cred-item + .cred-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; height: 60%;
+  width: 1px;
+  background: oklch(100% 0 0 / .12);
+}
+.cred-num {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+.cred-desc {
+  font-size: clamp(11px, .85vw, 13px);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .55);
+  margin-top: 8px;
+  display: block;
+  line-height: 1.5;
+}
+
+/* ── SOBRE ── */
+#sobre {
+  padding: var(--gap-section) 0;
+  background: var(--cream);
+}
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.sobre-img-wrap {
+  position: relative;
+}
+.sobre-img-arc {
+  border-radius: var(--r-arc);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: var(--shadow-lg);
+}
+.sobre-img-arc img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 600ms var(--ease-out);
+}
+.sobre-img-arc:hover img { transform: scale(1.03); }
+.sobre-seal {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 110px;
+  height: 110px;
+}
+.sobre-text { max-width: 540px; }
+.sobre-text .t-label { margin-bottom: 16px; }
+.sobre-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+.sobre-text h2 em { font-style: italic; color: var(--navy); }
+.sobre-text p {
+  color: var(--text-mid);
+  margin-bottom: 16px;
+  max-width: 480px;
+}
+.sobre-text .btn { margin-top: 24px; }
+.sobre-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.sobre-pill {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--cream-border);
+  border-radius: 100px;
+  color: var(--navy);
+  background: var(--cream-warm);
+}
+
+/* ── POR QUE ESCOLHER ── */
+#diferenciais {
+  padding: var(--gap-section) 0;
+  background: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.dif-ghost {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(120px, 18vw, 240px);
+  font-weight: 600;
+  color: var(--navy);
+  opacity: .04;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -.04em;
+}
+.dif-header { text-align: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.dif-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: 12px;
+}
+.dif-header h2 em { font-style: italic; color: var(--navy); }
+.dif-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.dif-card {
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  padding: clamp(28px, 3vw, 40px);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms;
+}
+.dif-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.dif-card-num {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 600;
+  color: var(--navy);
+  opacity: .06;
+  position: absolute;
+  top: -16px; right: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+.dif-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--navy);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.dif-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.dif-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+.dif-card p { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+
+/* ── SERVIÇOS ── */
+#servicos {
+  padding: var(--gap-section) 0;
+  background: var(--cream);
+}
+.srv-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: clamp(40px, 5vw, 60px); flex-wrap: wrap; gap: 16px; }
+.srv-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  max-width: 480px;
+}
+.srv-header h2 em { font-style: italic; color: var(--navy); }
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.srv-card {
+  background: var(--cream-warm);
+  border: 1px solid var(--cream-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms;
+  box-shadow: var(--shadow-sm);
+}
+.srv-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.srv-card-img {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--navy);
+}
+.srv-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease-out); }
+.srv-card:hover .srv-card-img img { transform: scale(1.04); }
+.srv-card-body { padding: 24px; }
+.srv-card-body h3 {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+.srv-card-body p { font-size: 13px; color: var(--text-soft); line-height: 1.6; margin-bottom: 16px; }
+.srv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  transition: gap 150ms;
+}
+.srv-link:hover { gap: 10px; }
+.srv-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ── COMO FUNCIONA ── */
+#como-funciona {
+  padding: var(--gap-section) 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.cf-ghost {
+  position: absolute;
+  bottom: -40px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(80px, 12vw, 180px);
+  font-weight: 600;
+  color: oklch(100% 0 0 / .04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.cf-header { text-align: center; margin-bottom: clamp(48px, 6vw, 72px); }
+.cf-header .t-label { color: var(--gold); }
+.cf-header .t-label::before { background: var(--gold); }
+.cf-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--cream);
+  margin-top: 12px;
+}
+.cf-header h2 em { font-style: italic; color: var(--gold); }
+.cf-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.cf-step {
+  text-align: center;
+  padding: 0 16px;
+}
+.cf-step-num {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 600;
+  color: var(--gold);
+  opacity: .3;
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+}
+.cf-step-img {
+  aspect-ratio: 4/3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-md);
+  background: var(--navy-mid);
+}
+.cf-step-img img { width: 100%; height: 100%; object-fit: cover; }
+.cf-step h3 {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.cf-step p { font-size: 13px; color: oklch(100% 0 0 / .55); line-height: 1.6; }
+.cf-connector {
+  display: none;
+}
+
+/* ── EQUIPE ── */
+#equipe {
+  padding: var(--gap-section) 0;
+  background: var(--cream-warm);
+}
+.eq-header { text-align: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.eq-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: 12px;
+}
+.eq-header h2 em { font-style: italic; color: var(--navy); }
+.eq-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+.eq-card {
+  text-align: center;
+  transition: transform 200ms var(--ease-out);
+}
+.eq-card:hover { transform: translateY(-4px); }
+.eq-photo {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-inline: auto;
+  margin-bottom: 16px;
+  width: clamp(100px, 12vw, 160px);
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--cream);
+  background: var(--navy);
+}
+.eq-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.eq-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.eq-card span {
+  font-size: 12px;
+  color: var(--navy);
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* ── GALERIA ── */
+#galeria {
+  padding: var(--gap-section) 0;
+  background: var(--cream);
+}
+.gal-header { text-align: center; margin-bottom: clamp(36px, 5vw, 56px); }
+.gal-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: 12px;
+}
+.gal-header h2 em { font-style: italic; color: var(--navy); }
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 16px;
+}
+.gal-item {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.gal-item--large { grid-column: span 2; }
+.gal-item-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.gal-item--large .gal-item-img { aspect-ratio: 16/9; }
+.gal-item-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease-out); }
+.gal-item:hover .gal-item-img img { transform: scale(1.04); }
+.gal-item-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 12px 16px;
+  background: linear-gradient(to top, oklch(18% 0.07 255 / .8), transparent);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .8);
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.gal-item:hover .gal-item-label { opacity: 1; }
+
+/* ── DEPOIMENTOS ── */
+#depoimentos {
+  padding: var(--gap-section) 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.dep-ghost {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: var(--font-display);
+  font-size: clamp(120px, 16vw, 220px);
+  color: oklch(100% 0 0 / .03);
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.dep-header { text-align: center; margin-bottom: clamp(40px, 5vw, 64px); position: relative; }
+.dep-header .t-label { color: var(--gold); }
+.dep-header .t-label::before { background: var(--gold); }
+.dep-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: -.02em;
+  margin-top: 12px;
+}
+.dep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+.dep-card {
+  background: oklch(100% 0 0 / .05);
+  border: 1px solid oklch(100% 0 0 / .1);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 3vw, 36px);
+  position: relative;
+}
+.dep-quote {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: .8;
+  color: var(--gold);
+  opacity: .4;
+  position: absolute;
+  top: 16px; left: 24px;
+  pointer-events: none;
+}
+.dep-stars { display: flex; gap: 3px; margin-bottom: 20px; margin-top: 24px; }
+.dep-star { width: 14px; height: 14px; fill: var(--gold); }
+.dep-text {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-style: italic;
+  color: oklch(100% 0 0 / .85);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.dep-author { display: flex; align-items: center; gap: 12px; }
+.dep-author-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.dep-author-name { font-size: 13px; font-weight: 500; color: var(--cream); display: block; }
+.dep-author-src { font-size: 11px; color: oklch(100% 0 0 / .4); letter-spacing: .1em; text-transform: uppercase; }
+
+/* ── ESTRUTURA ── */
+#estrutura {
+  padding: var(--gap-section) 0;
+  background: var(--cream-warm);
+}
+.est-header { text-align: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.est-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.8vw, 50px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: 12px;
+}
+.est-header h2 em { font-style: italic; color: var(--navy); }
+.est-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+.est-item { border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+.est-item--tall { grid-row: span 2; }
+.est-item-img { aspect-ratio: 4/3; overflow: hidden; background: var(--navy); }
+.est-item--tall .est-item-img { aspect-ratio: auto; height: 100%; }
+.est-item-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms var(--ease-out); }
+.est-item:hover .est-item-img img { transform: scale(1.04); }
+.est-copy {
+  margin-top: clamp(32px, 4vw, 48px);
+  max-width: 700px;
+  margin-inline: auto;
+  text-align: center;
+}
+.est-copy p { color: var(--text-mid); font-size: clamp(15px, 1.1vw, 17px); line-height: 1.7; }
+
+/* ── FAQ ── */
+#faq {
+  padding: var(--gap-section) 0;
+  background: var(--cream);
+}
+.faq-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.faq-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.1;
+  margin-top: 12px;
+}
+.faq-left h2 em { font-style: italic; color: var(--navy); }
+.faq-left p { color: var(--text-mid); margin-top: 16px; font-size: 15px; max-width: 320px; }
+.faq-list { display: flex; flex-direction: column; gap: 4px; }
+.faq-item {
+  border-bottom: 1px solid var(--cream-border);
+}
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 20px 0;
+  cursor: pointer;
+  gap: 16px;
+  min-height: 44px;
+}
+.faq-q-text {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+.faq-icon {
+  width: 24px; height: 24px;
+  border: 1px solid var(--cream-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 200ms var(--ease-out);
+}
+.faq-icon svg { width: 12px; height: 12px; stroke: var(--navy); fill: none; stroke-width: 2; transition: transform 200ms; }
+.faq-item.open .faq-icon { background: var(--navy); border-color: var(--navy); }
+.faq-item.open .faq-icon svg { stroke: var(--cream); transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 350ms var(--ease-out), padding 200ms;
+}
+.faq-a-inner { padding-bottom: 20px; font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 300px; }
+
+/* ── CTA ── */
+#cta {
+  padding: clamp(72px, 10vw, 120px) 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.cta-decor {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 110%, oklch(76% 0.08 80 / .08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner {
+  position: relative;
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+}
+.cta-inner .t-label { color: var(--gold); margin-bottom: 20px; display: block; }
+.cta-inner .t-label::before { background: var(--gold); }
+.cta-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 62px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  color: var(--cream);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+.cta-inner h2 em { font-style: italic; color: var(--gold); }
+.cta-inner p { color: oklch(100% 0 0 / .6); font-size: 16px; margin-bottom: 40px; line-height: 1.65; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-gold-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin-inline: auto;
+  margin-bottom: 24px;
+  opacity: .5;
+}
+
+/* ── CONTATO ── */
+#contato {
+  padding: var(--gap-section) 0;
+  background: var(--cream-warm);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.contact-left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+.contact-left h2 em { font-style: italic; color: var(--navy); }
+.contact-items { display: flex; flex-direction: column; gap: 20px; }
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.contact-icon {
+  width: 44px; height: 44px;
+  background: var(--navy);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.contact-item-text strong { display: block; font-weight: 500; font-size: 14px; color: var(--text-dark); margin-bottom: 2px; }
+.contact-item-text span, .contact-item-text a { font-size: 14px; color: var(--text-mid); display: block; }
+.contact-item-text a:hover { color: var(--navy); }
+.contact-map {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  height: 320px;
+  background: var(--navy);
+}
+.contact-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ── FOOTER ── */
+#footer {
+  background: var(--navy-deep);
+  padding: clamp(48px, 6vw, 72px) 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: clamp(32px, 4vw, 48px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid oklch(100% 0 0 / .08);
+}
+.footer-brand img { height: 36px; width: auto; margin-bottom: 16px; }
+.footer-brand p { font-size: 13px; color: oklch(100% 0 0 / .45); line-height: 1.65; max-width: 220px; }
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col li a {
+  font-size: 13px;
+  color: oklch(100% 0 0 / .5);
+  transition: color 150ms;
+}
+.footer-col li a:hover { color: var(--cream); }
+.footer-col p { font-size: 13px; color: oklch(100% 0 0 / .5); line-height: 1.7; }
+.footer-social { display: flex; gap: 12px; margin-top: 16px; }
+.footer-social a {
+  width: 36px; height: 36px;
+  border: 1px solid oklch(100% 0 0 / .15);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 150ms;
+}
+.footer-social a:hover { border-color: var(--gold); background: oklch(100% 0 0 / .05); }
+.footer-social svg { width: 16px; height: 16px; stroke: oklch(100% 0 0 / .6); fill: none; stroke-width: 1.5; }
+.footer-bottom {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: oklch(100% 0 0 / .3); }
+.footer-monogram {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: oklch(100% 0 0 / .2);
+  letter-spacing: .05em;
+}
+.footer-map-wrap {
+  width: 100%;
+  height: 200px;
+  margin-top: 0;
+  overflow: hidden;
+  border-top: 1px solid oklch(100% 0 0 / .06);
+}
+.footer-map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ── SEAL SVG ── */
+.seal-svg { width: 100%; height: 100%; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .eq-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cf-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .est-grid { grid-template-columns: 1fr 1fr; }
+  .est-item--tall { grid-row: span 1; }
+  .est-item--tall .est-item-img { aspect-ratio: 4/3; height: auto; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-monogram { font-size: 120px; right: -20px; opacity: .03; }
+  .hero-title { font-size: clamp(36px, 10vw, 56px); }
+  .hero-content { text-align: center; }
+  .hero-eyebrow, .hero-sub, .hero-ctas { justify-content: center; }
+  .hero-text { max-width: 100%; }
+  .hero-sub { margin-inline: auto; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+  .cred-item:nth-child(2n+1)::before { display: none; }
+  .cred-item:nth-child(3)::before { display: block; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .sobre-img-wrap { max-width: 340px; margin-inline: auto; }
+  .sobre-text { text-align: center; }
+  .sobre-pill-row { justify-content: center; }
+  .sobre-text p { margin-inline: auto; }
+  .sobre-text .btn { display: block; text-align: center; }
+  .dif-cards { grid-template-columns: 1fr; }
+  .srv-header { flex-direction: column; align-items: flex-start; text-align: center; }
+  .srv-header h2 { margin-inline: auto; }
+  .cf-steps { grid-template-columns: 1fr; gap: 32px; }
+  .eq-grid { grid-template-columns: repeat(2, 1fr); }
+  .gal-grid { grid-template-columns: 1fr 1fr; }
+  .gal-item--large { grid-column: span 2; }
+  .dep-grid { grid-template-columns: 1fr; }
+  .faq-inner { grid-template-columns: 1fr; }
+  .faq-left p { max-width: 100%; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .est-grid { grid-template-columns: 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .cta-btns .btn { width: 100%; max-width: 340px; justify-content: center; }
+}
+@media (max-width: 600px) {
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero-ctas .btn { width: 100%; max-width: 300px; justify-content: center; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+  .eq-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .gal-grid { grid-template-columns: 1fr; }
+  .gal-item--large { grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .dif-header, .eq-header, .gal-header, .est-header, .srv-header { text-align: center; }
+  .t-label { justify-content: center; display: flex; align-items: center; }
+  .dep-header, .cf-header { text-align: center; }
+  .cf-header .t-label, .dep-header .t-label { justify-content: center; }
+  .faq-left { text-align: center; }
+  .faq-left p { margin-inline: auto; }
+  .contact-left h2 { text-align: center; }
+  .contact-left .t-label { justify-content: center; }
+  .hero-scrim {
+    background: linear-gradient(
+      to bottom,
+      oklch(18% 0.07 255 / .7) 0%,
+      oklch(18% 0.07 255 / .55) 50%,
+      oklch(18% 0.07 255 / .7) 100%
+    );
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Clínica Odonto Maria">
+      <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/04/logo-4.webp" alt="Clínica Odonto Maria" width="160" height="40">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#equipe">Equipe</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-wpp nav-cta" aria-label="Agendar via WhatsApp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      Agendar
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu de navegação">
+  <button class="mobile-close" id="mobileClose" aria-label="Fechar menu">&#10005;</button>
+  <a href="#sobre" class="mobile-link">Sobre</a>
+  <a href="#servicos" class="mobile-link">Serviços</a>
+  <a href="#equipe" class="mobile-link">Equipe</a>
+  <a href="#galeria" class="mobile-link">Galeria</a>
+  <a href="#depoimentos" class="mobile-link">Depoimentos</a>
+  <a href="#contato" class="mobile-link">Contato</a>
+  <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-wpp" style="margin-top:16px">Agendar Consulta</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" aria-label="Apresentação">
+  <img
+    src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-1.webp"
+    alt="Interior da Clínica Odonto Maria, ambiente moderno e acolhedor"
+    class="hero-bg"
+    width="1920" height="1080"
+    fetchpriority="high"
+  >
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-scrim-bottom" aria-hidden="true"></div>
+  <span class="hero-monogram" aria-hidden="true">OM</span>
+  <div class="hero-content">
+    <div class="hero-inner wrap">
+      <div class="hero-text" id="heroText">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line" aria-hidden="true"></span>
+          <span>João Pessoa · Desde 2018</span>
+        </div>
+        <h1 class="hero-title">
+          Odontologia
+          <em>sem dor,</em>
+          com excelência.
+        </h1>
+        <p class="hero-sub">Cuidado completo para o seu sorriso, do clareamento à reabilitação total, com tecnologia de ponta e um time de especialistas apaixonados pelo que fazem.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-wpp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Agendar Consulta
+          </a>
+          <a href="#servicos" class="btn btn-ghost">Ver Serviços</a>
+        </div>
+      </div>
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-badge">
+          <span class="hero-badge-num">15mil</span>
+          <span class="hero-badge-label">Pacientes<br>aprovados</span>
+        </div>
+        <div class="hero-badge">
+          <span class="hero-badge-num">5</span>
+          <span class="hero-badge-label">Especialistas<br>dedicados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILIDADE -->
+<section id="credibilidade" aria-label="Números da clínica">
+  <div class="wrap">
+    <div class="cred-grid">
+      <div class="cred-item reveal">
+        <span class="cred-num">15mil</span>
+        <span class="cred-desc">Pacientes<br>aprovados</span>
+      </div>
+      <div class="cred-item reveal">
+        <span class="cred-num">5</span>
+        <span class="cred-desc">Cirurgiões<br>especialistas</span>
+      </div>
+      <div class="cred-item reveal">
+        <span class="cred-num">8+</span>
+        <span class="cred-desc">Anos de<br>atuação</span>
+      </div>
+      <div class="cred-item reveal">
+        <span class="cred-num">5.0</span>
+        <span class="cred-desc">Nota no<br>Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" aria-label="Sobre a Clínica Odonto Maria">
+  <div class="wrap">
+    <div class="sobre-grid">
+      <div class="sobre-img-wrap reveal">
+        <div class="sobre-img-arc">
+          <img
+            src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/08/ruth-clinica-odonto6-1-554x1024.webp"
+            alt="Dra. Ruth Costa em atendimento na Clínica Odonto Maria"
+            width="554" height="1024"
+            loading="lazy"
+          >
+        </div>
+        <div class="sobre-seal" aria-hidden="true">
+          <svg class="seal-svg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selo Clínica Odonto Maria">
+            <circle cx="55" cy="55" r="52" stroke="#d5ba81" stroke-width="1"/>
+            <circle cx="55" cy="55" r="46" stroke="#d5ba81" stroke-width="0.5" stroke-dasharray="2 3"/>
+            <text font-family="Cormorant Garamond, serif" font-size="30" font-weight="600" fill="#263d6b" text-anchor="middle" dominant-baseline="central" x="55" y="52">OM</text>
+            <text font-family="Hanken Grotesk, sans-serif" font-size="7.5" fill="#d5ba81" letter-spacing="3" text-anchor="middle" x="55" y="72">ODONTO MARIA</text>
+            <text font-family="Hanken Grotesk, sans-serif" font-size="6" fill="#616a85" letter-spacing="2" text-anchor="middle" x="55" y="83">JOÃO PESSOA</text>
+          </svg>
+        </div>
+      </div>
+      <div class="sobre-text reveal">
+        <p class="t-label">Nossa história</p>
+        <h2>Saúde bucal com <em>cuidado real</em> e precisão.</h2>
+        <p>A Clínica Odonto Maria nasceu do desejo de transformar o atendimento odontológico em uma experiência acolhedora, sem dor e de alta qualidade. Hoje somos referência em João Pessoa, com um espaço totalmente reformulado e uma equipe de especialistas prontos para cuidar de você.</p>
+        <p>Nossa missão é devolver sorrisos com excelência, zelando por cada detalhe, da avaliação inicial à reabilitação completa.</p>
+        <div class="sobre-pill-row">
+          <span class="sobre-pill">Atendimento humanizado</span>
+          <span class="sobre-pill">Tecnologia de ponta</span>
+          <span class="sobre-pill">Prontuário digital</span>
+        </div>
+        <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:28px">Conheça nossa clínica</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE ESCOLHER -->
+<section id="diferenciais" aria-label="Por que escolher a Clínica Odonto Maria">
+  <span class="dif-ghost" aria-hidden="true">Excelência</span>
+  <div class="wrap">
+    <div class="dif-header reveal">
+      <p class="t-label">Por que nos escolher</p>
+      <h2>Três razões para confiar o<br>seu sorriso a <em>nós</em>.</h2>
+    </div>
+    <div class="dif-cards">
+      <div class="dif-card reveal">
+        <span class="dif-card-num" aria-hidden="true">01</span>
+        <div class="dif-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Especialistas em cada área</h3>
+        <p>Cada procedimento é realizado por um cirurgião-dentista especialista na sua área. Implantes, canal, prótese, ortodontia e estética, cada um com quem domina de verdade.</p>
+      </div>
+      <div class="dif-card reveal">
+        <span class="dif-card-num" aria-hidden="true">02</span>
+        <div class="dif-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Tecnologia de ponta</h3>
+        <p>Radiografias digitais, tomografias, equipamentos de última geração e prontuário digital garantem diagnósticos precisos e tratamentos eficazes com o mínimo desconforto possível.</p>
+      </div>
+      <div class="dif-card reveal">
+        <span class="dif-card-num" aria-hidden="true">03</span>
+        <div class="dif-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Ambiente acolhedor</h3>
+        <p>Espaço totalmente reformulado, projetado para o seu conforto. Atendimento por hora marcada, massagem durante o procedimento e uma equipe gentil que cuida de você do início ao fim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" aria-label="Serviços odontológicos">
+  <div class="wrap">
+    <div class="srv-header">
+      <div>
+        <p class="t-label">Especialidades</p>
+        <h2>Tudo o que seu sorriso<br><em>precisa</em>, em um só lugar.</h2>
+      </div>
+      <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-outline">Agendar consulta</a>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/bright.png" alt="Clareamento dental" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Clareamento Dental</h3>
+          <p>Protocolo personalizado, zero sensibilidade e resultado duradouro. Alcance o branco máximo com segurança.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/dental-implant.png" alt="Implantes dentários" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Implantes Dentários</h3>
+          <p>Materiais de altíssima qualidade, técnicas avançadas e resultados estéticos e funcionais excelentes.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/braces.png" alt="Ortodontia e aparelhos" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Ortodontia</h3>
+          <p>Correção do alinhamento para pacientes de todas as idades. Aparelhos fixos, removíveis e alinhadores.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/dental-surgery.png" alt="Cirurgia oral e extração de siso" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Cirurgia Oral</h3>
+          <p>Extração de siso e cirurgias com alto índice de sucesso, máximo conforto e recuperação rápida.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/decay.png" alt="Endodontia, tratamento de canal" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Endodontia (Canal)</h3>
+          <p>O melhor tratamento de canal em João Pessoa. Indolor, preciso e com tecnologia de ponta para preservar o seu dente.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/p3r.png" alt="Prótese e reabilitação oral" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Prótese e Reabilitação</h3>
+          <p>Próteses personalizadas que restauram funcionalidade e estética. Reabilitação completa para quem perdeu todos os dentes.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/ihrnbg.png" alt="Facetas dentárias" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Facetas</h3>
+          <p>Procedimento seguro e personalizado que eleva a autoestima. Design do sorriso com acabamento natural e duradouro.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-card-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2023/02/hi4tug.png" alt="Periodontia, tratamento da gengiva" loading="lazy" width="400" height="225">
+        </div>
+        <div class="srv-card-body">
+          <h3>Periodontia</h3>
+          <p>Prevenção e tratamento de inflamações na gengiva. Cuidado essencial para manter a saúde bucal completa.</p>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="srv-link">
+            Saiba mais
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" aria-label="Como funciona o tratamento">
+  <span class="cf-ghost" aria-hidden="true">Tratamento</span>
+  <div class="wrap">
+    <div class="cf-header">
+      <p class="t-label">Nosso processo</p>
+      <h2>Da primeira consulta ao<br>sorriso que você <em>merece</em>.</h2>
+    </div>
+    <div class="cf-steps">
+      <div class="cf-step reveal">
+        <span class="cf-step-num" aria-hidden="true">01</span>
+        <div class="cf-step-img">
+          <img src="assets/ai-4.jpg" alt="Recepção da clínica para avaliação inicial" loading="lazy" width="1024" height="768">
+        </div>
+        <h3>Avaliação Inicial</h3>
+        <p>Consulta de acolhimento com exame clínico completo para entender suas necessidades e objetivos.</p>
+      </div>
+      <div class="cf-step reveal">
+        <span class="cf-step-num" aria-hidden="true">02</span>
+        <div class="cf-step-img">
+          <img src="assets/ai-2.jpg" alt="Equipamentos de radiografia e tomografia" loading="lazy" width="1024" height="768">
+        </div>
+        <h3>Exames de Imagem</h3>
+        <p>Radiografias digitais e tomografias computadorizadas para diagnóstico preciso e seguro.</p>
+      </div>
+      <div class="cf-step reveal">
+        <span class="cf-step-num" aria-hidden="true">03</span>
+        <div class="cf-step-img">
+          <img src="assets/ai-3.jpg" alt="Estação de planejamento digital do tratamento" loading="lazy" width="1024" height="768">
+        </div>
+        <h3>Planejamento</h3>
+        <p>Seu plano de tratamento é desenvolvido individualmente, com prazo, etapas e custo apresentados com clareza.</p>
+      </div>
+      <div class="cf-step reveal">
+        <span class="cf-step-num" aria-hidden="true">04</span>
+        <div class="cf-step-img">
+          <img src="assets/ai-1.jpg" alt="Sala de atendimento odontológico moderna" loading="lazy" width="1024" height="768">
+        </div>
+        <h3>Tratamento</h3>
+        <p>Execução por especialista na sua área, com conforto e atenção total durante cada sessão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" aria-label="Equipe de especialistas">
+  <div class="wrap">
+    <div class="eq-header reveal">
+      <p class="t-label">Nossos especialistas</p>
+      <h2>Profissionais que cuidam de você<br>com <em>dedicação e precisão</em>.</h2>
+    </div>
+    <div class="eq-grid">
+      <div class="eq-card reveal">
+        <div class="eq-photo">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/Dr-Alberto-Lacerrda_Implantodontia-e-Cirurgia-Oral_COM-768x768.webp" alt="Dr. Alberto Lacerda, especialista em Implantodontia e Cirurgia Oral" loading="lazy" width="768" height="768">
+        </div>
+        <h3>Dr. Alberto Lacerda</h3>
+        <span>Implantodontia e Cirurgia Oral</span>
+      </div>
+      <div class="eq-card reveal">
+        <div class="eq-photo">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/Dr-Ramon-Uchoa-_Protese-e-Reabilitacao-Oral-768x768.webp" alt="Dr. Ramon Uchôa, especialista em Prótese e Reabilitação Oral" loading="lazy" width="768" height="768">
+        </div>
+        <h3>Dr. Ramon Uchôa</h3>
+        <span>Prótese e Reabilitação Oral</span>
+      </div>
+      <div class="eq-card reveal">
+        <div class="eq-photo">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/Dra-Camylla-Brandao-_Endodontia-canal-768x768.webp" alt="Dra. Camylla Brandão, especialista em Endodontia" loading="lazy" width="768" height="768">
+        </div>
+        <h3>Dra. Camylla Brandão</h3>
+        <span>Endodontia (Canal)</span>
+      </div>
+      <div class="eq-card reveal">
+        <div class="eq-photo">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/Dra-Katianne-Dias_Ortodontia-e-Ortopedia-Facial-768x768.webp" alt="Dra. Katianne Dias, especialista em Ortodontia e Ortopedia Facial" loading="lazy" width="768" height="768">
+        </div>
+        <h3>Dra. Katianne Dias</h3>
+        <span>Ortodontia e Ortopedia Facial</span>
+      </div>
+      <div class="eq-card reveal">
+        <div class="eq-photo">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/Dra.-Ruth-Costa-768x768.webp" alt="Dra. Ruth Costa, especialista em Clareamento, Estética e Facetas" loading="lazy" width="768" height="768">
+        </div>
+        <h3>Dra. Ruth Costa</h3>
+        <span>Clareamento, Estética e Facetas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" aria-label="Galeria da clínica">
+  <div class="wrap">
+    <div class="gal-header reveal">
+      <p class="t-label">Nossa clínica</p>
+      <h2>Ambiente pensado para o<br>seu <em>bem-estar</em>.</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item gal-item--large reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-7.webp" alt="Interior da Clínica Odonto Maria" loading="lazy" width="1200" height="675">
+        </div>
+        <span class="gal-item-label">Clínica Odonto Maria</span>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-6.webp" alt="Ambiente da clínica" loading="lazy" width="600" height="450">
+        </div>
+        <span class="gal-item-label">Recepção</span>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-3.webp" alt="Sala de atendimento" loading="lazy" width="600" height="450">
+        </div>
+        <span class="gal-item-label">Sala de atendimento</span>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-4.webp" alt="Detalhes do espaço" loading="lazy" width="600" height="450">
+        </div>
+        <span class="gal-item-label">Detalhes do espaço</span>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-2.webp" alt="Estrutura da clínica" loading="lazy" width="600" height="450">
+        </div>
+        <span class="gal-item-label">Nossa estrutura</span>
+      </div>
+      <div class="gal-item reveal">
+        <div class="gal-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/04/i4ntv2-1-1024x992.png" alt="Clínica Odonto Maria" loading="lazy" width="600" height="450">
+        </div>
+        <span class="gal-item-label">Ambiente reformulado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" aria-label="Depoimentos de pacientes">
+  <span class="dep-ghost" aria-hidden="true">"</span>
+  <div class="wrap">
+    <div class="dep-header reveal">
+      <p class="t-label">O que dizem nossos pacientes</p>
+      <h2>Cada sorriso transformado<br>é a nossa <em>maior conquista</em>.</h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card reveal">
+        <span class="dep-quote" aria-hidden="true">"</span>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Atendimento por hora marcada, pontual. Serviço de excelência. Ambiente muito agradável e confortável. Tem até massagem enquanto você é atendido!"</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar" aria-hidden="true">G</div>
+          <div>
+            <span class="dep-author-name">Giovanna Feitosa</span>
+            <span class="dep-author-src">Google · 5/5</span>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal">
+        <span class="dep-quote" aria-hidden="true">"</span>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Melhor clínica que já fui atendido, espaço muito bom e aconchegante, as pessoas são ótimas e todo mundo me tratou super bem. Recomendo a todos."</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar" aria-hidden="true">M</div>
+          <div>
+            <span class="dep-author-name">Mateus Ataíde</span>
+            <span class="dep-author-src">Google · 5/5</span>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal">
+        <span class="dep-quote" aria-hidden="true">"</span>
+        <div class="dep-stars" aria-label="5 estrelas">
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="dep-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="dep-text">"Fiz meu clareamento com a Dra. Ruth e o resultado foi incrível. Atendimento cuidadoso, equipe atenciosa e o ambiente é lindo demais. Voltarei com certeza."</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar" aria-hidden="true">A</div>
+          <div>
+            <span class="dep-author-name">Ana Claudia S.</span>
+            <span class="dep-author-src">Google · 5/5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section id="estrutura" aria-label="Estrutura da clínica">
+  <div class="wrap">
+    <div class="est-header reveal">
+      <p class="t-label">Nossa estrutura</p>
+      <h2>Um espaço reformulado para<br>a sua <em>melhor experiência</em>.</h2>
+    </div>
+    <div class="est-grid">
+      <div class="est-item est-item--tall reveal">
+        <div class="est-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/06/IMG_4147.jpg" alt="Recepção da Clínica Odonto Maria" loading="lazy" width="800" height="1066">
+        </div>
+      </div>
+      <div class="est-item reveal">
+        <div class="est-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/06/IMG_4148.jpg" alt="Corredor e ambiente interno da clínica" loading="lazy" width="600" height="450">
+        </div>
+      </div>
+      <div class="est-item reveal">
+        <div class="est-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/06/IMG_4149.jpg" alt="Sala de operação moderna" loading="lazy" width="600" height="450">
+        </div>
+      </div>
+      <div class="est-item reveal">
+        <div class="est-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-1.webp" alt="Área de espera confortável" loading="lazy" width="600" height="450">
+        </div>
+      </div>
+      <div class="est-item reveal">
+        <div class="est-item-img">
+          <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/05/CLINICA-ODONTO-MARIA-2.webp" alt="Detalhes do ambiente da clínica" loading="lazy" width="600" height="450">
+        </div>
+      </div>
+    </div>
+    <div class="est-copy reveal">
+      <p>Nosso espaço foi totalmente reformulado para que cada visita seja uma experiência de bem-estar. Ambientes iluminados, climatizados, com conforto e acolhimento em cada detalhe, para você se sentir à vontade desde o primeiro momento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" aria-label="Perguntas frequentes">
+  <div class="wrap">
+    <div class="faq-inner">
+      <div class="faq-left reveal">
+        <p class="t-label">Perguntas frequentes</p>
+        <h2>Tudo o que você<br>precisa <em>saber</em>.</h2>
+        <p>Tire suas dúvidas antes de agendar ou fale diretamente com nossa equipe pelo WhatsApp.</p>
+        <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:28px">Falar com a equipe</a>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">Qual é o valor do tratamento?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">O valor de qualquer procedimento é informado após o exame clínico, pois cada caso é único. Trabalhamos com prontuário digital e oferecemos planos personalizados. Agende sua avaliação para receber um orçamento detalhado e sem surpresas.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">Como é o primeiro atendimento?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Na primeira consulta, o dentista realiza um exame clínico completo, escuta suas queixas e objetivos, e solicita os exames de imagem necessários (radiografias ou tomografia). A partir daí, apresentamos um planejamento individualizado com todas as opções de tratamento.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">Vocês oferecem parcelamento?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Sim. Trabalhamos com condições de parcelamento para facilitar o acesso ao tratamento que você precisa. As opções de pagamento são apresentadas no momento do planejamento, de forma transparente e adaptada à sua realidade.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">Qual tecnologia é usada nos tratamentos?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Utilizamos radiografia digital, tomografia computadorizada, prontuário digital e equipamentos de última geração em todas as especialidades. Nossa tecnologia garante diagnósticos mais precisos, tratamentos mais rápidos e muito mais conforto para o paciente.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">A clínica atende crianças?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Sim. Estamos preparados para atender pacientes de todas as idades, incluindo crianças. Nossa equipe tem experiência com odontopediatria e abordagem acolhedora para que os pequenos se sintam seguros e à vontade durante a consulta.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-q-text">Preciso de encaminhamento médico para consultar?</span>
+            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Não. Você pode agendar sua consulta diretamente pelo WhatsApp, sem necessidade de encaminhamento ou referência. Basta entrar em contato e nossa equipe cuidará de tudo para você.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" aria-label="Agendamento">
+  <div class="cta-decor" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cta-inner reveal">
+      <span class="t-label" style="display:flex;align-items:center;justify-content:center;">Agende agora</span>
+      <div class="cta-gold-line" aria-hidden="true"></div>
+      <h2>Pronto para sorrir<br>com <em>confiança</em>?</h2>
+      <p>Mais de 15 mil pacientes já confiaram seu sorriso a nós. Dê o próximo passo e agende sua avaliação hoje.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" class="btn btn-wpp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Agendar Consulta via WhatsApp
+        </a>
+        <a href="mailto:contato@clinicaodontomaria.com.br" class="btn btn-ghost">Enviar e-mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" aria-label="Contato e localização">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="t-label">Fale conosco</p>
+        <h2>Estamos prontos<br>para <em>atender você</em>.</h2>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/5583991579251" target="_blank" rel="noopener">(83) 99157-9251</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>E-mail</strong>
+              <a href="mailto:contato@clinicaodontomaria.com.br">contato@clinicaodontomaria.com.br</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Instagram</strong>
+              <a href="https://www.instagram.com/clinicaodontomariaa" target="_blank" rel="noopener">@clinicaodontomariaa</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <strong>Horário de Atendimento</strong>
+              <span>Segunda a Sexta: 8h às 18h</span>
+              <span>Sábado: 8h às 12h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps?q=João+Pessoa,+Paraíba,+Brasil&output=embed" loading="lazy" title="Localização em João Pessoa" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" role="contentinfo">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://clinicaodontomaria.com.br/wp-content/uploads/2024/04/logo-4.webp" alt="Clínica Odonto Maria" width="140" height="36" loading="lazy">
+        <p>Odontologia de excelência em João Pessoa. Cuidando do seu sorriso com precisão, tecnologia e muito carinho desde 2018.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/clinicaodontomariaa" target="_blank" rel="noopener" aria-label="Instagram da Clínica Odonto Maria">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener" aria-label="WhatsApp da Clínica Odonto Maria">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#equipe">Nossa equipe</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#estrutura">Estrutura</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Especialidades</h4>
+        <ul>
+          <li><a href="#servicos">Clareamento dental</a></li>
+          <li><a href="#servicos">Implantes</a></li>
+          <li><a href="#servicos">Ortodontia</a></li>
+          <li><a href="#servicos">Endodontia</a></li>
+          <li><a href="#servicos">Facetas</a></li>
+          <li><a href="#servicos">Prótese e Reabilitação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>
+          João Pessoa, Paraíba<br><br>
+          <a href="https://wa.me/5583991579251" target="_blank" rel="noopener">(83) 99157-9251</a><br>
+          <a href="mailto:contato@clinicaodontomaria.com.br">contato@clinicaodontomaria.com.br</a><br><br>
+          Seg–Sex: 8h às 18h<br>
+          Sáb: 8h às 12h
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-map-wrap">
+    <iframe src="https://www.google.com/maps?q=João+Pessoa,+Paraíba,+Brasil&output=embed" loading="lazy" title="Mapa de localização" allowfullscreen></iframe>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2025 Clínica Odonto Maria. Todos os direitos reservados.</span>
+    <span class="footer-monogram">OM</span>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load', function() {
+  /* ── NAV SCROLL ── */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── MOBILE MENU ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileClose = document.getElementById('mobileClose');
+  var mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileLinks.forEach(function(link) { link.addEventListener('click', closeMenu); });
+
+  /* ── FAQ ACCORDION ── */
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── GSAP ANIMATIONS ── */
+  if (!window.gsap) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero entrance */
+  var heroText = document.getElementById('heroText');
+  if (heroText) {
+    gsap.set(heroText, { opacity: 0, y: 24 });
+    gsap.to(heroText, {
+      opacity: 1, y: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+  }
+
+  /* Hero monogram */
+  var mono = document.querySelector('.hero-monogram');
+  if (mono) {
+    gsap.set(mono, { opacity: 0, scale: 0.96 });
+    gsap.to(mono, { opacity: 1, scale: 1, duration: 1.6, ease: 'power3.out', delay: 0.4 });
+  }
+
+  /* Scroll reveals */
+  document.fonts.ready.then(function() {
+    var reveals = document.querySelectorAll('.reveal');
+    gsap.set(reveals, { opacity: 0, y: 20 });
+
+    ScrollTrigger.batch(reveals, {
+      once: true,
+      start: 'top 88%',
+      onEnter: function(batch) {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.09,
+          ease: 'power3.out'
+        });
+      }
+    });
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+</body>
+</html>
